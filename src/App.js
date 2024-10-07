@@ -15,6 +15,7 @@ import {
   setError,
   addTodo,
 } from './redux/todosSlice';
+import { getTodos, setTodos as setLocalTodos, removeTodos } from './localStorageService'; // Import your local storage service
 
 const App = () => {
   const dispatch = useDispatch();
@@ -25,33 +26,22 @@ const App = () => {
   const [todoToDelete, setTodoToDelete] = useState(null);
 
   useEffect(() => {
-    const storedTodos = localStorage.getItem('todos');
-    if (storedTodos) {
-      try {
-        const parsedTodos = JSON.parse(storedTodos);
-        if (Array.isArray(parsedTodos)) {
-          dispatch(setTodos(parsedTodos));
-        } else {
-          console.error('Invalid data format in localStorage');
-        }
-      } catch (error) {
-        console.error('Error parsing todos from localStorage', error);
-      }
-    }
+    const parsedTodos = getTodos(); // Use the service to get todos
+    dispatch(setTodos(parsedTodos));
     dispatch(setLoading(false));
   }, [dispatch]);
 
   useEffect(() => {
     if (todos.length > 0) {
-      localStorage.setItem('todos', JSON.stringify(todos));
+      setLocalTodos(todos); // Use the service to set todos
     } else {
-      localStorage.removeItem('todos');
+      removeTodos(); // Use the service to remove todos from local storage
     }
-  }, [todos]);
+  }, [todos]); 
 
   useEffect(() => {
     const timer = setInterval(() => {
-      dispatch(setTodos([...todos])); // Trigger an update to refresh color based on time
+      dispatch(setTodos([...todos]));   // Trigger an update to refresh color based on time
     }, 60000); // Check every minute
 
     return () => clearInterval(timer);

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleComplete } from '../redux/todosSlice';
 import { CheckCircleFill, PencilSquare, TrashFill, Clock } from 'react-bootstrap-icons';
 import './TodoList.css'; // Ensure to define your custom styles here
+import moment from 'moment';
 
 const TodoList = ({ setEditTodo, setShowEditAddModal, setShowDeleteConfirmModal, setTodoToDelete }) => {
   const dispatch = useDispatch();
@@ -45,10 +46,10 @@ const TodoList = ({ setEditTodo, setShowEditAddModal, setShowDeleteConfirmModal,
                   <div className="todo-time text-muted d-flex align-items-center">
                     <Clock className="me-2" />
                     <span className="time-text">
-                      {new Date(todo.time).toLocaleDateString([], { year: 'numeric', month: 'short', day: 'numeric' })}
-                    </span>
+                              {moment(todo.time).format('MMM D, YYYY')}
+                     </span>
                     &nbsp;
-                    {new Date(todo.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    {moment(todo.time).format('hh:mm A')}
                   </div>
                 </div>
               </div>
