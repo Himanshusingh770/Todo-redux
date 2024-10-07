@@ -1,0 +1,63 @@
+.todo-list {
+    padding: 0;
+    list-style-type: none;
+
+  }
+  
+.todo-item {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    word-wrap: break-word; /* This ensures long words wrap to the next line */
+    white-space: normal;   /* Allows text to wrap when it reaches the end */
+    word-break: break-word;
+    overflow: hidden; /* Ensures overflowed words break and wrap to the next line */
+}
+.edit-button{
+    cursor: pointer;
+}
+
+  .todo-item.violet {
+    background-color: #f3e5f5;
+  }
+  
+  .todo-item.green {
+    background-color: #e8f5e9;
+  }
+  
+  .todo-item.red {
+    background-color: #ffebee;
+  }
+  
+  .check-icon {
+    cursor: pointer;
+    font-size: 24px;
+    margin-right: 10px;
+  }
+  
+  .todo-title {
+    flex: 1;
+    font-size: 18px;
+  }
+  
+  .todo-time {
+    font-size: 14px;
+    color: #757575;
+  }
+  
+  .ml-auto {
+    margin-left: auto;
+  }
+  .todo-title{
+    height: 50px;
+  }
+  .todo-item {
+    padding: 10px; /* Ensure consistent padding */
+  }
+  .todo-title {
+    margin-right: 10px; /* Space between title and other elements */
+  }
+  .delete-model{
+    margin-top: 70px;
+  }
